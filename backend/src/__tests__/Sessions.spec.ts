@@ -13,7 +13,7 @@ async function makeUser(override = {}): Promise<User> {
     name: faker.name.findName(),
     email: faker.internet.email(),
     password: await hash('123456', 8),
-    ...override
+    ...override,
   };
 }
 
