@@ -17,4 +17,10 @@ export default [
     email: 'marialucia@dbserver.com.br',
     password: '$2a$08$5ybTwWqhG0OlwNVFSSo.oeyGbQR88KtplsuYPbKLAxcLrqyoPPo9e',
   },
+  {
+    id: '010d60b2-2326-45b0-8f6d-d5afe2361aa9',
+    name: 'Ana Clara',
+    email: 'anaclara@dbserver.com.br',
+    password: '$2a$08$5ybTwWqhG0OlwNVFSSo.oeyGbQR88KtplsuYPbKLAxcLrqyoPPo9e',
+  },
 ];

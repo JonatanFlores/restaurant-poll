@@ -1,21 +1,8 @@
 import request from 'supertest';
-import faker from 'faker';
-import { hash } from 'bcryptjs';
-import { uuid } from 'uuidv4';
 
 import app from '../app';
 import db from '../storage/database';
-import User from '../models/User';
-
-async function makeUser(override = {}): Promise<User> {
-  return {
-    id: uuid(),
-    name: faker.name.findName(),
-    email: faker.internet.email(),
-    password: await hash('123456', 8),
-    ...override,
-  };
-}
+import { makeUser } from '../storage/database/utils';
 
 describe('Sessions', () => {
   beforeEach(() => {

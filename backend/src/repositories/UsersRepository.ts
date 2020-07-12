@@ -6,7 +6,17 @@ class UsersRepository {
     const { users } = db;
     return new Promise(resolve => {
       setTimeout(() => {
-        resolve(users.find(u => u.email.toLowerCase() === email.toLowerCase()));
+        let user;
+
+        const userRecord = users.find(
+          u => u.email.toLowerCase() === email.toLowerCase(),
+        );
+
+        if (userRecord) {
+          user = new User(userRecord);
+        }
+
+        resolve(user);
       }, 1000);
     });
   }

@@ -1,10 +1,8 @@
 import { compare } from 'bcryptjs';
-import { sign } from 'jsonwebtoken';
 
 import UsersRepository from '../repositories/UsersRepository';
 import User from '../models/User';
 import AppError from '../errors/AppError';
-import authConfig from '../config/auth';
 
 interface Request {
   email: string;
@@ -31,11 +29,7 @@ class AuthenticateUserService {
       throw new AppError('Incorrect email/password combination', 401);
     }
 
-    const { secret, expiresIn } = authConfig.jwt;
-    const token = sign({}, secret, {
-      subject: user.id,
-      expiresIn,
-    });
+    const token = user.generateToken();
 
     return {
       user,
