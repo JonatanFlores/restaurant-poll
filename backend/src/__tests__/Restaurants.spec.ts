@@ -5,6 +5,12 @@ import db from '../storage/database';
 import { makeRestaurant } from '../storage/database/utils';
 
 describe('Restaurants', () => {
+  beforeEach(() => {
+    db.polls = [];
+    db.restaurants = [];
+    db.users = [];
+  });
+
   it('should display a list of restaurants', async () => {
     const restaurant = await makeRestaurant();
 

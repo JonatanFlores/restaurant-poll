@@ -1,7 +1,6 @@
 import { compare } from 'bcryptjs';
 
 import UsersRepository from '../repositories/UsersRepository';
-import User from '../models/User';
 import AppError from '../errors/AppError';
 
 interface Request {
@@ -10,7 +9,6 @@ interface Request {
 }
 
 interface Response {
-  user: User;
   token: string;
 }
 
@@ -31,10 +29,7 @@ class AuthenticateUserService {
 
     const token = user.generateToken();
 
-    return {
-      user,
-      token,
-    };
+    return { token };
   }
 }
 

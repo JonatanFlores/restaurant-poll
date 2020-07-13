@@ -9,16 +9,9 @@ router.post('/', async (request, response) => {
 
   const authenticateUser = new AuthenticateUserService();
 
-  const { user, token } = await authenticateUser.execute({ email, password });
+  const { token } = await authenticateUser.execute({ email, password });
 
-  return response.status(200).json({
-    user: {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-    },
-    token,
-  });
+  return response.status(200).json({ token });
 });
 
 export default router;

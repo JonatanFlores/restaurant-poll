@@ -6,6 +6,8 @@ import { makeUser } from '../storage/database/utils';
 
 describe('Sessions', () => {
   beforeEach(() => {
+    db.polls = [];
+    db.restaurants = [];
     db.users = [];
   });
 
@@ -22,11 +24,6 @@ describe('Sessions', () => {
     expect(response.status).toBe(200);
     expect(response.body).toEqual(
       expect.objectContaining({
-        user: {
-          id: user.id,
-          name: user.name,
-          email: user.email,
-        },
         token: expect.any(String),
       }),
     );

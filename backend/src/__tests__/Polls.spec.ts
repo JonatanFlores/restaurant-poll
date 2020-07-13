@@ -7,6 +7,12 @@ import { makeRestaurant, makeUser } from '../storage/database/utils';
 import Poll from '../models/Poll';
 
 describe('Polls', () => {
+  beforeEach(() => {
+    db.polls = [];
+    db.restaurants = [];
+    db.users = [];
+  });
+
   it('it should be able to vote only if the user is authenticated', async () => {
     const user = await makeUser();
     const restaurant = await makeRestaurant();
