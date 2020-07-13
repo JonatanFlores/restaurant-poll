@@ -10,6 +10,15 @@ class RestaurantsRepository {
       }, 1000);
     });
   }
+
+  public async findById(id: string): Promise<Restaurant> {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        const restaurant = db.restaurants.find(r => r.id === id);
+        resolve(restaurant);
+      }, 1000);
+    });
+  }
 }
 
 export default RestaurantsRepository;

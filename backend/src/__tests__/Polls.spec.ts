@@ -30,7 +30,10 @@ describe('Polls', () => {
     expect(response.status).toBe(200);
     expect(response.body).toEqual(
       expect.objectContaining({
-        message: 'Vote computed',
+        poll: {
+          restaurant,
+          voted_today: true,
+        },
       }),
     );
     expect(db.polls.length).toEqual(1);

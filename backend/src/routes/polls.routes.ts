@@ -9,13 +9,12 @@ router.post('/', ensureAuthenticated, async (request, response) => {
   const { restaurant_id } = request.body;
   const { id } = request.user;
   const voteForRestaurant = new VoteForRestaurantService();
-
-  await voteForRestaurant.execute({
+  const poll = await voteForRestaurant.execute({
     user_id: id,
     restaurant_id,
   });
 
-  return response.json({ message: 'Vote computed' });
+  return response.json({ poll });
 });
 
 export default router;

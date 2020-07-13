@@ -1,7 +1,6 @@
 import Poll from '../../models/Poll';
 import Restaurant from '../../models/Restaurant';
 import User from '../../models/User';
-import pollsData from './data/polls';
 import restaurantsData from './data/restaurants';
 import usersData from './data/users';
 
@@ -18,15 +17,7 @@ const database: IDatabase = {
 };
 
 if (process.env.NODE_ENV !== 'test') {
-  pollsData.forEach(poll => {
-    database.polls.push(
-      new Poll({
-        user_id: poll.user_id,
-        restaurant_id: poll.restaurant_id,
-        date: new Date(poll.date),
-      }),
-    );
-  });
+  database.polls = [];
 
   restaurantsData.forEach(restaurant => {
     database.restaurants.push(

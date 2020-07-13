@@ -1,3 +1,5 @@
+import { isSameDay } from 'date-fns';
+
 import Poll from '../models/Poll';
 import db from '../storage/database';
 
@@ -24,6 +26,18 @@ class PollsRepository {
         });
 
         resolve(polls);
+      }, 1000);
+    });
+  }
+
+  public async findByUserAndDate(user_id: string, date: Date): Promise<Poll> {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        const poll = db.polls.find(
+          p => p.user_id === user_id && isSameDay(p.date, date),
+        );
+
+        resolve(poll);
       }, 1000);
     });
   }

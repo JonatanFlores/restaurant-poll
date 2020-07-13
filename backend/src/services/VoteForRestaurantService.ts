@@ -1,17 +1,27 @@
 import { startOfHour, isSameDay } from 'date-fns';
 
 import PollsRepository from '../repositories/PollsRepository';
-import Poll from '../models/Poll';
+import RestaurantsRepository from '../repositories/RestaurantsRepository';
 import AppError from '../errors/AppError';
 import CheckWinnersOfTheWeekService from './CheckWinnersOfTheWeekService';
+
+interface IRestaurant {
+  id: string;
+  name: string;
+}
 
 interface Request {
   user_id: string;
   restaurant_id: string;
 }
 
+interface Response {
+  voted_today: boolean;
+  restaurant?: IRestaurant;
+}
+
 class VoteForRestaurantService {
-  public async execute({ user_id, restaurant_id }: Request): Promise<Poll> {
+  public async execute({ user_id, restaurant_id }: Request): Promise<Response> {
     const pollsRepository = new PollsRepository();
     const checkWinnersOfTheWeek = new CheckWinnersOfTheWeekService();
     const date = startOfHour(new Date());
@@ -35,11 +45,19 @@ class VoteForRestaurantService {
       throw new AppError('This restaurant already won this week');
     }
 
-    const poll = await pollsRepository.save({
+    const restaurantsRepository = new RestaurantsRepository();
+    const restaurant = await restaurantsRepository.findById(restaurant_id);
+
+    await pollsRepository.save({
       user_id,
       restaurant_id,
       date,
     });
+
+    const poll = {
+      voted_today: true,
+      restaurant,
+    };
 
     return poll;
   }

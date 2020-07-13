@@ -1,17 +1,21 @@
 import { Router } from 'express';
 
 import ensureAuthenticated from '../middlewares/enusreAuthenticated';
-import UsersRepository from '../repositories/UsersRepository';
+import GetLoggedInUserInformationService from '../services/GetLoggedInUserInformationService';
 
 const router = Router();
 
 router.get('/', ensureAuthenticated, async (request, response) => {
   const { id } = request.user;
-  const usersRepository = new UsersRepository();
-  const user = await usersRepository.findById(id);
-  delete user.password;
+  const getLoggedInUserInformation = new GetLoggedInUserInformationService();
+  const { user, poll } = await getLoggedInUserInformation.execute({
+    user_id: id,
+  });
 
-  return response.status(200).json({ user });
+  return response.status(200).json({
+    user,
+    poll,
+  });
 });
 
 export default router;

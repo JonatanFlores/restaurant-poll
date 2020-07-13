@@ -18,7 +18,7 @@ class CheckWinnersOfTheWeekService {
     const today = getDay(date);
     const winners = [];
 
-    for (let day = 0; day < today; day++) {
+    for (let day = getDay(monday); day < today; ++day) {
       const resultsToday: { [key: string]: number } = {};
       const currentDate = addDays(monday, day);
 
