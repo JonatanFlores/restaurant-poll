@@ -1,12 +1,7 @@
-import http from 'http';
-import socketIo from 'socket.io';
-
-import app from './app';
+import { server, io } from './app';
 import sockets from './sockets';
 
 const port = process.env.PORT || 3333;
-const server = http.createServer(app);
-const io = socketIo(server);
 
 io.on('connection', sockets);
 

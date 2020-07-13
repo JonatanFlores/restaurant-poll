@@ -10,14 +10,14 @@ class RestaurantSocket {
   }
 
   execute(): void {
-    this.socket.on('poll-new-vote', this.list.bind(this));
+    this.socket.on('new-vote-computed', this.list.bind(this));
   }
 
   async list(): Promise<void> {
     const generateListOfRestaurantsToVote = new GenerateListOfRestaurantsToVoteService();
     const restaurants = await generateListOfRestaurantsToVote.execute();
 
-    this.socket.emit('poll-votes-count', restaurants);
+    this.socket.emit('update-restaurants-list', restaurants);
   }
 }
 
