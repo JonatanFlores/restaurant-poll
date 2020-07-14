@@ -11,7 +11,7 @@ The application should work on Windows, Linux, and Mac. The following version is
 
 ## Install
 
-In order to install the application we need to extract the contents *restaurant-poll.zip*, downloaded from Github or the application can be cloned directly from the repository by executing the following, on your terminal:
+In order to install the application we need to extract the contents [restaurant-poll-master.zip](https://github.com/JonatanFlores/restaurant-poll/archive/master.zip) and rename the extracted folder, downloaded from Github, from **restaurant-poll-master** to **restaurant-poll**, or, if you prefer, the application can be cloned directly from the repository by executing the following, on your terminal:
 
 ```bash
 $ git clone https://github.com/JonatanFlores/restaurant-poll.git
@@ -22,25 +22,25 @@ After downloading the source code, now is necessary to install the frontend and 
 In your terminal execute:
 
 ```bash
-$ cd restaurant-poll/frontend && npm install && cd ..
+$ cd restaurant-poll/frontend && npm install && cd ../../
 ```
 
 or using yarn
 
 ```bash
-$ cd restaurant-poll/frontend && yarn && cd ..
+$ cd restaurant-poll/frontend && yarn && cd ../../
 ```
 
 Installing the backend
 
 ```bash
-$ cd restaurant-poll/backend && npm install && cd ..
+$ cd restaurant-poll/backend && npm install && cd ../../
 ```
 
 or using yarn
 
 ```bash
-$ cd restaurant-poll/backend && yarn && cd ..
+$ cd restaurant-poll/backend && yarn && cd ../../
 ```
 
 ## Setup
@@ -51,9 +51,15 @@ Now if the steps above were successful, both backend and frontend are available 
 
 We need to make sure both backend and frontend are running on separated terminals in order to execute the application
 
+**ALL THE COMMANDS BELOW ARE ASSUMING YOU ARE INSIDE YOUR APPLICATION FOLDER eg.: `restaurant-poll`**
+
+```bash
+$ cd restaurant-poll
+```
+
 #### RUNNING THE BACKEND
 
-After running the commands below the backend will be accessible by http://localhost:3333
+After running the commands below the backend will be accessible by [http://localhost:3333](http://localhost:3333)
 
 ```bash
 $ cd backend
@@ -67,9 +73,11 @@ $ cd backend
 $ yarn dev:server
 ```
 
+> OPEN A NEW TERMINAL TO EXECUTE THE FRONTEND
+
 #### RUNNING THE FRONTEND
 
-After running the commands below the backend will be accessible by http://localhost:3000
+After running the commands below the backend will be accessible by [http://localhost:3000](http://localhost:3000)
 
 ```bash
 $ cd frontend
@@ -82,6 +90,14 @@ or using yarn
 $ cd frontend
 $ yarn start
 ```
+
+## Usage
+
+The application consists mainly of two sections, the **login page** to authenticate the user by providing an email and password, enabling him/her to vote. 
+
+A **list of restaurants** where the user has a button to vote and also a counter displaying how many votes restaurants have and ordering them by votes descending, when is near to lunch, users know where they will have lunch.
+
+The counter starts from zero every new day and the user is only required to login if he or she wants to vote for a restaurant, otherwise, they can access the restaurant's list and check the winner.
 
 > THE USER HAVE A LOGIN PERIOD OF 5 HOURS, AFTER THAT THEY NEED TO RE-AUTHENTICATE
 
