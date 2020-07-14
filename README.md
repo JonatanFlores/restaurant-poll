@@ -53,6 +53,8 @@ We need to make sure both backend and frontend are running on separated terminal
 
 #### RUNNING THE BACKEND
 
+After running the commands below the backend will be accessible by http://localhost:3333
+
 ```bash
 $ cd backend
 $ npm run dev:server
@@ -65,8 +67,9 @@ $ cd backend
 $ yarn dev:server
 ```
 
-
 #### RUNNING THE FRONTEND
+
+After running the commands below the backend will be accessible by http://localhost:3000
 
 ```bash
 $ cd frontend
