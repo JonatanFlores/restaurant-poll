@@ -80,7 +80,7 @@ describe('Polls', () => {
     expect(response.body).toEqual(
       expect.objectContaining({
         status: 'error',
-        message: 'You already voted today',
+        message: expect.any(String),
       }),
     );
   });
@@ -124,7 +124,7 @@ describe('Polls', () => {
     expect(response.body).toEqual(
       expect.objectContaining({
         status: 'error',
-        message: 'This restaurant already won this week',
+        message: expect.any(String),
       }),
     );
 

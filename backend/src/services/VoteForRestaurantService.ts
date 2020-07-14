@@ -32,7 +32,7 @@ class VoteForRestaurantService {
 
     // check if the user already voted today
     if (checkUserAlreadyVotedToday) {
-      throw new AppError('You already voted today');
+      throw new AppError('Você já votou hoje');
     }
 
     const winners = checkWinnersOfTheWeek.execute({ polls, date });
@@ -44,7 +44,9 @@ class VoteForRestaurantService {
 
     // check if the restaurant already was chosen this week
     if (checkRestaurantAlreadyWonThisWeek) {
-      throw new AppError('This restaurant already won this week');
+      throw new AppError(
+        'Este restaurante já foi escolhido uma vez esta semana',
+      );
     }
 
     const restaurantsRepository = new RestaurantsRepository();

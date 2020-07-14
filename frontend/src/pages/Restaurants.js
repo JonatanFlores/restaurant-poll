@@ -90,7 +90,7 @@ export default function Restaurants() {
     <Layout>
       {restaurant.id && (
         <div className="alert alert-info mt-4 mb-0" role="alert">
-          <p className="my-0 text-center">Você já votou no restaurant <b>{restaurant.name}</b>, hoje</p>
+          <p className="my-0 text-center">Você escolheu almoçar no restaurante <b>{restaurant.name}</b>, hoje!</p>
         </div>
       )}
 

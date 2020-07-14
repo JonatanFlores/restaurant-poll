@@ -43,7 +43,7 @@ describe('Sessions', () => {
     expect(response.body).toEqual(
       expect.objectContaining({
         status: 'error',
-        message: 'Incorrect email/password combination',
+        message: expect.any(String),
       }),
     );
   });
@@ -62,7 +62,7 @@ describe('Sessions', () => {
     expect(response.body).toEqual(
       expect.objectContaining({
         status: 'error',
-        message: 'Incorrect email/password combination',
+        message: expect.any(String),
       }),
     );
   });
