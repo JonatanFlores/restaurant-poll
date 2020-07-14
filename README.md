@@ -145,3 +145,19 @@ On the server-side, the following hierarchy was followed:
   - **config**: qualquer configuração que possa ser usada no sistema, como chaves de porta externas etc. Eu não dividi em configurações de desenvolvimento e produção, pois esse sistema não irá para produção.
   - **errors**: this folder is used to store customized errors that are used, at the moment there is only one AppError class that contemplates the application flow.
   - **middlewares**: custom middleware used in express, at the moment there is only middleware to check if the user is authenticated before accessing certain routes and also middleware to
+  - **models**: Contains the models of the entities of our application could have been called entities.
+  - **repositories**: It contains methods that intermediate between the model layer and the data access in order to centralize the data manipulation. Currently, all data manipulation is being done with fake data and also using the application memory, so there is no "real persistency" being implemented.
+  - **routes**: The routes are also playing the role of controllers, this could be improved in the future. Basically they are dealing with requests received from users and sending back responses.
+  - **services**: contém todas as manipulações de informações e regras de negócios todas divididas em arquivos únicos de serviços.
+  - **sockets**: Some socket manipulations to deal with information in real time, today the only functionality that happens in real time in the application is voting. But other features could be added, for this reason it was divided into its own folder.
+  - **storage/database**: it holds information of fake users and restaurants, it doesn't s keep information about polls because they are stored on memory and once the node server stops, it loses all information.
+  - **app.ts**: it contains the application itself
+  - **server.ts**: is responsible for initializing the server and keep listening on a specific port
+
+### What could be done to improve the system?
+
+- Could be created a rule preventing polls to happen after 11 AM.
+- If and end time was put in place for voting, a cron job could be used and trigger an e-mail with the result of the vote
+- Today the frontend is only web, a mobile application could be made to make it more practical and also to use features such as push notifications
+- Today this system uses fake data for users and restaurants. We could create an administrative area where users who had the role of administrator would be responsible for adding users and restaurants on the platform
+Because the users would also be employees, we could think about a way of importing the data from somewhere.
