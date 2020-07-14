@@ -1,12 +1,12 @@
 import { Router } from 'express';
 
-import RestaurantsRepository from '../repositories/RestaurantsRepository';
+import GenerateListOfRestaurantsToVoteService from '../services/GenerateListOfRestaurantsToVoteService';
 
 const router = Router();
 
 router.get('/', async (request, response) => {
-  const restaurantsRepository = new RestaurantsRepository();
-  const restaurants = await restaurantsRepository.find();
+  const generateListOfRestaurantsToVote = new GenerateListOfRestaurantsToVoteService();
+  const restaurants = await generateListOfRestaurantsToVote.execute();
 
   return response.json(restaurants);
 });

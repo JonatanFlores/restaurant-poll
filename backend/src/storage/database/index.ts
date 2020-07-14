@@ -28,7 +28,14 @@ if (process.env.NODE_ENV !== 'test') {
     );
   });
 
-  database.restaurants = restaurantsData;
+  restaurantsData.forEach(restaurant => {
+    database.restaurants.push(
+      new Restaurant({
+        id: restaurant.id,
+        name: restaurant.name,
+      }),
+    );
+  });
 
   usersData.forEach(user => {
     database.users.push(
