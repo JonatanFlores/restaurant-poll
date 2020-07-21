@@ -1,4 +1,4 @@
-import { startOfHour, isSameDay } from 'date-fns';
+import { startOfDay, isSameDay, compareAsc } from 'date-fns';
 
 import PollsRepository from '../repositories/PollsRepository';
 import RestaurantsRepository from '../repositories/RestaurantsRepository';
@@ -24,7 +24,7 @@ class VoteForRestaurantService {
   public async execute({ user_id, restaurant_id }: Request): Promise<Response> {
     const pollsRepository = new PollsRepository();
     const checkWinnersOfTheWeek = new CheckWinnersOfTheWeekService();
-    const date = startOfHour(new Date());
+    const date = startOfDay(new Date());
     const polls = await pollsRepository.find();
     const checkUserAlreadyVotedToday = polls.find(poll => {
       return poll.user_id === user_id && isSameDay(poll.date, date);
@@ -37,7 +37,9 @@ class VoteForRestaurantService {
 
     const winners = checkWinnersOfTheWeek.execute({ polls, date });
     const checkRestaurantAlreadyWonThisWeek = winners.find(winner => {
-      return winner.restaurant_id === restaurant_id;
+      return (
+        winner.restaurant_id === restaurant_id && compareAsc(date, winner.date)
+      );
     });
 
     // check if the restaurant already was chosen this week
